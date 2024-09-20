@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter - PDF to Audio</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #audioControls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #audioControls button {
+            margin: 5px;
+            background-color: #28a745;
+        }
+
+        #audioControls button:hover {
+            background-color: #218838;
+        }
+
+        label {
+            margin-top: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        select {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #007bff;
+        }
+
+        #textArea {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            font-size: 14px;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+        }
+
+        #textContainer {
+            margin-top: 20px;
+            display: none;
+        }
+
+        span {
+            display: inline-block;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="index.html">PDF to Audio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="converter.html">Converter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div id="container">
+        <h1>PDF to Audio Converter</h1>
+
+        <!-- File input for uploading the PDF -->
+        <input type="file" id="pdfFileInput" accept="application/pdf">
+
+        <!-- Voice selection -->
+        <label for="voiceSelect">Choose a voice:</label><br>
+        <select id="voiceSelect"></select><br><br>
+        
+        <!-- Button to trigger the conversion -->
+        <button id="convertButton">Convert PDF to Audio</button>
+
+        <!-- Audio controls -->
+        <div id="audioControls" style="display: none;">
+            <button id="playButton">Play</button>
+            <button id="pauseButton">Pause</button>
+            <label for="speedControl">Speed:</label>
+            <input type="range" id="speedControl" min="0.5" max="2" value="1" step="0.1">
+        </div>
+
+        <!-- Text display with highlights -->
+        <div id="textContainer">
+            <div id="textArea"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript file for handling the logic -->
+    <script src="script.js"></script>
+</body>
+</html>
